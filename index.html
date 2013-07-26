@@ -1,0 +1,214 @@
+<!DOCTYPE html> 
+<html> 
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<title>App Meeting</title> 
+	<!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.css" />-->
+    <link rel="stylesheet"  type="text/css" href="css/jquery.mobile-1.0b2.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.datebox.min.css" /> 
+    <script type="text/javascript"  src="js/jquery-1.6.2.min.js"></script>
+
+	<script type="text/javascript" charset="utf-8" src="phonegap-1.0.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="phonegap-nfc-0.1.3.js"></script>
+
+	<script type="text/javascript"  src="js/jquery.mobile-1.0b2.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile.datebox.min.js"></script>
+	<script type="text/javascript"  src="js/date-en-US.js"></script>
+	 <script type="text/javascript"  src="js/functions.js"></script>
+     <script type="text/javascript"  src="js/nfc_comm.js"></script>
+</head> 
+
+
+<body> 
+<div id="logg"></div>
+<div id="home" data-role="page" data-title="App Meeting : Home">
+
+	<div data-role="header" data-theme="f">
+		<h1>Meeting Room</h1>
+	</div><!-- /header -->
+
+	<div data-role="content" data-theme="f">	
+		<!--<div><a class="ui-link-inherit" href="#viewroom">View Room</a></div>
+        <div><a class="ui-link-inherit" href="#bookroom">Book Room</a></div>
+        
+        <div data-role="fieldcontain">
+            <label for="slider">Input slider:</label>
+            <input type="range" name="slider" id="slider" value="0" min="0" max="6"  />
+        </div>-->
+                <div class="circal_wrapper">
+                        <div id="selection">
+                            <a   href="#viewlocations"><img src="img/manual.png"  /></a>
+                            <a   href="#bookroom"><img src="img/nfc.png" /></a>
+                              <a   href="javascript:void(0);" onClick="MRBS_object.roomListing('11');"><img src="img/qrcode.png" /></a>
+                            <a   href="#viewlocations"><img src="img/manual.png"  /></a>
+                            <a   href="#bookroom"><img src="img/nfc.png" /></a>
+                            <a   href="javascript:void(0);" onClick="MRBS_object.roomListing('11');"><img src="img/qrcode.png" /></a>
+                        </div>
+              		<div id="tst" >
+                      <div id="dragThumbObj" >
+                </div>                
+          </div>
+          
+        </div>
+       <!-- <div id="logg" >
+                </div>-->    
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-theme="f" data-position="fixed">
+		<div class="ui-tab"><a href="#home" class="home"></a></div>
+        <div class="ui-tab"><a href="#settings" class="setting"></a></div>
+	</div><!-- /footer -->
+	
+</div><!-- END HOme page -->
+
+<div id="viewlocations" data-role="page" data-title="App Meeting : View Location">
+
+	<div data-role="header" data-theme="f">
+        <a data-role="button" data-theme="f" data-rel="back" class="btmBack">Back</a>
+		<h1>Locations</h1>
+	</div><!-- /header -->
+    <div data-role="content">       	
+		<ul data-role="listview" class="locations-list" data-theme="f">
+            
+        </ul>
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-theme="f" data-position="fixed">
+		<div class="ui-tab"><a href="#home" class="ui-link-inherit home"></a></div>
+        <div class="ui-tab"><a href="#settings" class="ui-link-inherit setting"></a></div>
+	</div><!-- /footer -->
+	
+</div><!-- END viewLocations page -->
+
+
+<div id="viewroom" data-role="page" data-title="App Meeting : View Rooms">
+
+	<div data-role="header" data-theme="f">
+        <a data-role="button" data-theme="f" data-rel="back" class="btmBack">Back</a>
+		<h1>Rooms</h1>
+	</div><!-- /header -->
+
+   	
+    <div data-role="content">       	
+		<ul data-role="listview"  class="rooms-list"  data-theme="f">
+         
+        </ul>
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-theme="f" data-position="fixed">
+		<div class="ui-tab"><a href="#home" class="ui-link-inherit home"></a></div>
+        <div class="ui-tab"><a href="#settings" class="ui-link-inherit setting"></a></div>
+	</div><!-- /footer -->
+	
+</div><!-- END viewroom page -->
+
+
+<div id="viewroombookings" data-role="page" data-title="App Meeting : View Room Bookings">
+
+	<div data-role="header" data-theme="f">
+        <a data-role="button" data-theme="f" data-rel="back" class="btmBack">Back</a>
+		<h1>Room Bookings</h1>
+         <a data-role="button" data-theme="f" data-rel="" href="#bookroom" class="book_room">Book Room</a>
+	</div><!-- /header -->
+
+    <div class="date clearfix">
+        <a   class="prev" href="#"></a>
+    	<p class="dateStr"></p>
+        <a   class="next" href="#"></a>
+    </div>
+	
+    <div data-role="content">       	
+		<ul data-role="listview"  class="bookings-list"  data-theme="f">
+         
+        </ul>
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-theme="f" data-position="fixed">
+		<div class="ui-tab"><a href="#home" class="ui-link-inherit home"></a></div>
+        <div class="ui-tab"><a href="#settings" class="ui-link-inherit setting"></a></div>
+	</div><!-- /footer -->
+	
+</div><!-- END viewroom page -->
+
+<div id="bookroom" data-role="page" data-title="App Meeting : Book Room">
+
+	<div data-role="header" data-theme="f">
+        <a data-role="button" data-theme="f" data-rel="back" class="btmBack">Back</a>
+		<h1>Book Room</h1>
+	</div><!-- /header -->
+	<div data-role="content">	
+    <form id="BookRoomForm" action="http://mrbs.stageweb01.alphasalmonstaging.com/Entry/AddEntry" method="post">
+		<input type="text" id="userName" name="name" value="name">
+        <input type="text" id="roomID" name="room_id" value="11">
+        <div data-role="fieldcontain">
+            <textarea cols="40" rows="8" name="description" id="Description" ></textarea>
+            </div>
+        <div style="clear:both"></div>
+       <div data-role="fieldcontain">
+      <label for="start_time">Start</label>
+          
+          <input name="start_time" id="myStartdate" type="date" data-role="datebox"
+     data-options='{"mode": "slidebox", "dateFormat":"DD/MM/YYYY GG:ii", "timeFormat":12, "fieldsOrder":["y","m","d","h","i"]}'>
+   </div>
+       
+        <div style="clear:both"></div>
+         <div data-role="fieldcontain">
+        <label for="end_time">End</label>
+         <input name="end_time" id="myEnddate" type="date" data-role="datebox"
+   data-options='{"mode": "slidebox", "dateFormat":"DD/MM/YYYY GG:ii", "timeFormat":12, "fieldsOrder":["y","m","d","h","i"]}'>
+       </div>
+        <div style="clear:both"></div>
+       <!-- <div class="lb"><label>Alert</label></div>
+       
+        <div class="dvSlider">
+        	<label for="slider">10 minutes before</label>
+            <select name="slider" id="slider" data-role="slider">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select>
+         </div>
+         <div style="clear:both"></div>-->
+         <div class="dvBtnSubmit">   
+              <button type="button" value="Add Entry" class="btnSubmit" aria-disabled="false">Submit</button> 
+         </div>
+         </form>
+        </div>	
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-theme="f" data-position="fixed">
+		<div class="ui-tab"><a href="#home" class="ui-link-inherit home"></a></div>
+        <div class="ui-tab"><a href="#settings" class="ui-link-inherit setting"></a></div>
+	</div><!-- /footer -->
+	
+</div><!-- END bookroom page -->
+
+
+<div id="settings" data-role="page" data-title="App Meeting : Setting">
+
+	<div data-role="header" data-theme="f">
+        <a href="#" data-role="button" data-inline="true"  data-rel="back"  data-theme="f">Cancel</a>
+		<h1>Settings</h1>
+        <a href="#" data-role="button" data-inline="true" data-theme="f" class="btn_saveSettings">Save</a>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<div data-role="fieldcontain">
+        	<div class="lb"><label>Name</label></div>
+            <div><input type="text" name="sname" id="sname" value=""  /></div>
+       
+       		<div class="lb"><label>Ext</label></div>
+        	<div><input type="text" name="sext" id="sext" value=""  /></div>
+        </div> 	
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-theme="f" data-position="fixed">
+		<div class="ui-tab"><a href="#home" class="ui-link-inherit home"></a></div>
+        <div class="ui-tab"><a href="#settings" class="ui-link-inherit setting"></a></div>
+	</div><!-- /footer -->
+	
+</div><!-- END setting page -->
+
+</body>
+</html>
